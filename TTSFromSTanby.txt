@@ -1,0 +1,29 @@
+
+
+We can use the PPE STANDBY database to create the transportable tablespace.
+
+In a READ only database (as Standby is) you cannot create Transportable tablespace set as you have to
+run a EXPDP (oracle utility) to export the Tablespace metadata and this EXPDP must create a master table
+in database which is imposible in a READ ONLY database.
+
+However, we may convert the STANDBY database to a SNAPSHOT database which can then open READ WRITE
+After we done we may revert the SNAPSHOT database as it was , a STANDBY database.
+
+While in SNAPHOT database you cannot SWITCHOVER or FAILOVER from PRIMARY in case of failure.
+However, we need database in SNAPSHOT mode as long as copy the EMIS_MI tablespace to create 
+the Transportable tablespace and then after we can revert the SNAPSHOT databse back to STANDBY. 
+
+1)Make sure Standby is in SYNC with primary
+2)Create a snapshot database from Standby database
+
+Now the snapshot database is open read write so we can create a 
+TRansportable tablespace from this database.
+
+
+3)Create the transportable tablespace set from Snapshot database
+This means to copy EMIS_MI tablespace and run the EXPDP to export the metadata
+
+4)Revert the snapshot database back to STandby database
+5)Standby database will catch up with primary database
+6)Transportable tablespace set are available to be attached to a database and such the re-partition begin
+
