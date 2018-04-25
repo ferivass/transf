@@ -49,7 +49,13 @@ if [ "$?" -ne "0" ]; then
 	echo "Error whilr create $DPDIR Oracle directory"
 	echo "Abort..."
 	exit 666
-fi	
+fi
+
+sqlplus / as sysdba <<EOF
+drop directory $DPDIR ;
+exit;
+EOF
+	
 
 
 
