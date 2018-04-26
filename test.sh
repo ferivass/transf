@@ -2,16 +2,11 @@
 
 
 
-while getopts se: option
-do
-	case "$option"
-	in
-		s) ORACLESID=$OPTARG;;
-		e) EXPTYPE=$OPTARG;;
-		?)	echo "wromg usage"
-				exit 666;;
-	esac			
-done
+echo "Enter Y if you want to continue..."
+read carset
+if [ "$carset" != "Y" ]; then
+	echo "Your choise was to abort...."
+	exit 666
+fi
 
-echo $ORACLESID
-echo $EXPTYPE
+echo "am trevut"
