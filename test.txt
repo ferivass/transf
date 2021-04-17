@@ -1,7 +1,0 @@
-SQL> select sysdate from bual;
-select sysdate from bual
-                    *
-ERROR at line 1:
-ORA-00942: table or view does not exist 
-
-
